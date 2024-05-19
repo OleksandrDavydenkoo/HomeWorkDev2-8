@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatabaseInitService {
     public static void main(String[] args) {
@@ -16,10 +16,13 @@ public class DatabaseInitService {
             String[] queries = content.split(";");
 
             Connection connection = Database.getInstance().getConnection();
-            Statement statement = connection.createStatement();
 
             for (String query : queries) {
-                statement.executeUpdate(query);
+                if (!query.trim().isEmpty()) {
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(query.trim())) {
+                        preparedStatement.executeUpdate();
+                    }
+                }
             }
 
             System.out.println("Database initialized successfully.");

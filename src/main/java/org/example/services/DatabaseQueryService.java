@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +18,10 @@ public class DatabaseQueryService {
     public List<LongestProject> findLongestProject() {
         List<LongestProject> result = new ArrayList<>();
 
-        try (Connection connection = Database.getInstance().getConnection();
-             Statement statement = connection.createStatement()) {
+        try (Connection connection = Database.getInstance().getConnection()) {
             String content = new String(Files.readAllBytes(Paths.get("sql/find_longest_project.sql")));
-            try (ResultSet resultSet = statement.executeQuery(content)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(content);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     int projectId = resultSet.getInt("project_id");
                     String projectName = resultSet.getString("project_name");
@@ -39,10 +39,10 @@ public class DatabaseQueryService {
     public List<ProjectClient> findMaxProjectsClient() {
         List<ProjectClient> result = new ArrayList<>();
 
-        try (Connection connection = Database.getInstance().getConnection();
-             Statement statement = connection.createStatement()) {
+        try (Connection connection = Database.getInstance().getConnection()) {
             String content = new String(Files.readAllBytes(Paths.get("sql/find_max_projects_client.sql")));
-            try (ResultSet resultSet = statement.executeQuery(content)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(content);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     int clientId = resultSet.getInt("client_id");
                     String clientName = resultSet.getString("client_name");
@@ -60,10 +60,10 @@ public class DatabaseQueryService {
     public List<WorkerSalary> findMaxSalaryWorker() {
         List<WorkerSalary> result = new ArrayList<>();
 
-        try (Connection connection = Database.getInstance().getConnection();
-             Statement statement = connection.createStatement()) {
+        try (Connection connection = Database.getInstance().getConnection()) {
             String content = new String(Files.readAllBytes(Paths.get("sql/find_max_salary_worker.sql")));
-            try (ResultSet resultSet = statement.executeQuery(content)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(content);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     int workerId = resultSet.getInt("worker_id");
                     String workerName = resultSet.getString("worker_name");
@@ -81,10 +81,10 @@ public class DatabaseQueryService {
     public List<WorkerAge> findYoungestEldestWorkers() {
         List<WorkerAge> result = new ArrayList<>();
 
-        try (Connection connection = Database.getInstance().getConnection();
-             Statement statement = connection.createStatement()) {
+        try (Connection connection = Database.getInstance().getConnection()) {
             String content = new String(Files.readAllBytes(Paths.get("sql/find_youngest_eldest_workers.sql")));
-            try (ResultSet resultSet = statement.executeQuery(content)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(content);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     int workerId = resultSet.getInt("worker_id");
                     String workerName = resultSet.getString("worker_name");
@@ -102,10 +102,10 @@ public class DatabaseQueryService {
     public List<ProjectPrice> printProjectPrices() {
         List<ProjectPrice> result = new ArrayList<>();
 
-        try (Connection connection = Database.getInstance().getConnection();
-             Statement statement = connection.createStatement()) {
+        try (Connection connection = Database.getInstance().getConnection()) {
             String content = new String(Files.readAllBytes(Paths.get("sql/print_project_prices.sql")));
-            try (ResultSet resultSet = statement.executeQuery(content)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(content);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String projectName = resultSet.getString("project_name");
                     double projectPrice = resultSet.getDouble("project_price");
