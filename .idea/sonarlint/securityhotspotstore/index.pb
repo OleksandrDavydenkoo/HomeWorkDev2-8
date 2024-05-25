@@ -19,10 +19,6 @@ B
 docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
 W
 'src/main/java/org/example/Database.java,e\3\e30cbeac6330249122db68224054f827aa95efa6
-k
-;src/main/java/org/example/services/DatabaseInitService.java,0\0\0088975e856abefb9014ebe35464ed34ea72697c
-o
-?src/main/java/org/example/services/DatabasePopulateService.java,6\d\6d53c39d5d6d0ebb026fe28f64bc212234ac5f8b
 l
 <src/main/java/org/example/services/DatabaseQueryService.java,f\7\f7223e3b85011a712dbf291a08e1360a23c00f77
 c
@@ -90,3 +86,7 @@ w
 G.idea/sonarlint/issuestore/9/6/96f19cbf46baf5fde9450aaed4d22b3e4ea3788f,e\9\e98473ea1f489831c827d93715890ca30c1bd52f
 w
 G.idea/sonarlint/issuestore/6/c/6cb6d8d390037ef57ab2320dfc83ad11f1de2843,8\0\807ab77f1d8aa4b7f4a5011fbead4447c1897cd0
+\
+,src/main/java/org/example/client/Client.java,6\4\6496ee221cf0c79c3ae312ac16f8fa3965c877e1
+c
+3src/main/java/org/example/client/ClientService.java,2\5\2522a9a783538aa3cdc282eff067d370a92a672a
